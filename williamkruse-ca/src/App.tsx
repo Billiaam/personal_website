@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import FieldPage from './pages/FieldPage'
 import SectionPage from './pages/SectionPage'
 import ProjectPage from './pages/ProjectPage'
+import VehiclePage from './pages/VehiclePage'
 import About from './pages/About'
 import Resume from './pages/Resume'
 import NotFound from './pages/NotFound'
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="rocketry" element={<FieldPage field="rocketry" />} />
         <Route path="drones" element={<FieldPage field="drones" />} />
         <Route path=":field/:section" element={<SectionPage />} />
+        <Route path=":field/:section/:vehicle" element={<VehiclePage />} />
         <Route path="projects/:slug" element={<ProjectPage />} />
         <Route path="about" element={<About />} />
         <Route path="resume" element={<Resume />} />
