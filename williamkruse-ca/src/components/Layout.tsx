@@ -37,6 +37,7 @@ export default function Layout() {
             <a href={`mailto:${site.email}`}>Email</a>
             <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
             <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={site.x} target="_blank" rel="noreferrer">X</a>
             <a href={site.resumePdf} target="_blank" rel="noreferrer">Resume</a>
           </div>
         </div>
