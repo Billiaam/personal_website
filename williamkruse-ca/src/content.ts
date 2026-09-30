@@ -244,6 +244,7 @@ export const projects: Project[] = [
     status: 'Early design',
     role: 'Project lead',
     cover: '/images/projects/static-casting.jpg',
+    tools: ['SolidWorks', 'Engineering drawings'],
     body: [
       'Every grain we\u2019ve flown has been spin cast. Molten wax goes into the liner, gets capped, and spins while it cools. It works, but it has a ceiling.',
       "→ **The problem.** Our spin casts only got about six hours to cool, because someone had to stand with the machine the entire time. That's too fast for EVA. Cool it quickly and it shrinks unevenly and cracks; the literature points to a 20–24 hour window instead. Spin casting also doesn't scale. At 8 inches, spinning a grain that size becomes a stability problem before it's a manufacturing one.",
@@ -266,6 +267,7 @@ export const projects: Project[] = [
     status: 'Early design',
     role: 'Project lead',
     cover: '/images/projects/b5c-spin-caster.jpg',
+    tools: ['SolidWorks', 'Engineering drawings'],
     body: [
       "Static casting is the goal, but it's unproven. The team can't afford to bet the P-class on it, so B⁵C is the insurance policy.",
       "→ **Why not fix the old one?** BBBC 2.0 (a.k.a. the BBBBC) had hit its limits. The frame vibrated and wasn't stable, the control box wiring had degraded, the PWM speed control only ran full-on or full-off, the magnetic tachometer had stopped reading, and it couldn't cast anything larger than 5\" in diameter. Patching each of those would still leave a machine that can't grow with the team.",
@@ -293,7 +295,7 @@ export const projects: Project[] = [
       "→ **CFD before hardware.** I'm running the design in STAR-CCM+ to confirm the flow chokes where we expect before anything gets machined. Then we cold flow the real plate and check the results against the simulation.",
       "This is my first time owning the injector design outright, after helping size it last year.",
     ],
-    tools: ['STAR-CCM+', 'SolidWorks'],
+    tools: ['STAR-CCM+', 'SolidWorks', 'Engineering drawings'],
     lineage: 'injector',
     generation: 2,
   },
@@ -315,7 +317,7 @@ export const projects: Project[] = [
       "→ **CFD first.** I'm running the upscaled plate in STAR-CCM+ to confirm it stays well clear of choking across the burn, while keeping enough restriction to actually mix the flow.",
       'The coating process and the four-port philosophy carry over unchanged. Simple still wins.',
     ],
-    tools: ['STAR-CCM+', 'SolidWorks'],
+    tools: ['STAR-CCM+', 'SolidWorks', 'Engineering drawings'],
     lineage: 'mixing-plate',
     generation: 3,
   },
@@ -390,7 +392,7 @@ export const projects: Project[] = [
       "→ **Port area.** Sized at more than twice the nozzle throat area. If the gas chokes at the plate instead of the nozzle, you've built a second throat in the middle of your chamber.",
       'It came back charred, with visible regression on the spokes. But it survived the entire burn. That\u2019s the win.',
     ],
-    tools: ['SolidWorks'],
+    tools: ['SolidWorks', 'Engineering drawings'],
     lineage: 'mixing-plate',
     generation: 2,
   },
@@ -463,7 +465,7 @@ export const projects: Project[] = [
       '→ **Flight version.** For flight we moved to 1/2" 304 stainless, retained between two phenolic liners, with RTV insulating the edges and coating the face toward the grain to limit radiative heating.',
       'Surviving a full-duration burn was still the open problem. That became the entire brief for generation two.',
     ],
-    tools: ['SolidWorks'],
+    tools: ['SolidWorks', 'Engineering drawings'],
     lineage: 'mixing-plate',
     generation: 1,
   },
@@ -637,6 +639,16 @@ export const projects: Project[] = [
   },
 ]
 
+// Skills on the About page are built automatically from every project's
+// `tools`. This only controls grouping and order. Anything not listed here
+// lands in "Other". Skills with no projects are hidden.
+export const skillGroups: { name: string; skills: string[] }[] = [
+  { name: 'Design & simulation', skills: ['SolidWorks', 'CATIA', 'Engineering drawings', 'STAR-CCM+', 'OpenRocket'] },
+  { name: 'Programming & analysis', skills: ['Python', 'MATLAB', 'C'] },
+  { name: 'Electronics', skills: ['Altium'] },
+  { name: 'Flight', skills: ['Betaflight', 'Liftoff'] },
+]
+
 // ── helpers ───────────────────────────────────────────────────
 export const fieldLabel: Record<Field, string> = { rocketry: 'Rocketry', drones: 'Drones' }
 export const isUpcoming = (p: Project) => p.status === 'Upcoming'
@@ -671,4 +683,17 @@ export const lineageOf = (p: Project) => {
   const line = projects.filter((x) => x.lineage === p.lineage && x.generation !== undefined).sort((a, b) => a.generation! - b.generation!)
   const i = line.findIndex((x) => x.slug === p.slug)
   return { prev: line[i - 1], next: line[i + 1] }
+}
+
+/** Grouped skills, each with the projects that use it. */
+export const skillIndex = () => {
+  const used = new Map<string, Project[]>()
+  projects.forEach((p) => p.tools?.forEach((t) => used.set(t, [...(used.get(t) ?? []), p])))
+  const grouped = new Set(skillGroups.flatMap((g) => g.skills))
+  const groups = skillGroups
+    .map((g) => ({ name: g.name, skills: g.skills.filter((k) => used.has(k)).map((k) => ({ name: k, projects: used.get(k)!.sort(byDateDesc) })) }))
+    .filter((g) => g.skills.length)
+  const other = [...used.keys()].filter((k) => !grouped.has(k))
+  if (other.length) groups.push({ name: 'Other', skills: other.map((k) => ({ name: k, projects: used.get(k)!.sort(byDateDesc) })) })
+  return groups
 }
