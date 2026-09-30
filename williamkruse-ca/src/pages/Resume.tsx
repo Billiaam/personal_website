@@ -6,7 +6,7 @@ export default function Resume() {
     <section className="wrap resume">
       <Reveal>
         <h1>Resume</h1>
-        <p className="lede">Aerospace engineering, hybrid propulsion, and unmanned flight. Seeking a summer 2027 co-op.</p>
+        <p className="lede">Aerospace engineering, hybrid propulsion, and unmanned flight. {site.lookingFor}</p>
         <p className="muted small">Updated {site.resumeUpdated}</p>
         <a className="btn btn--primary" href={site.resumePdf} target="_blank" rel="noreferrer">Download PDF</a>
       </Reveal>

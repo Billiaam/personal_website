@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { site, featuredProject, latest, getSection } from '../content'
-import { Img, Reveal, Kicker, ProjectCard, Grid } from '../components/ui'
+import { site, homeWork, getSection, getVehicle, vehicleUrl } from '../content'
+import { Img, Reveal, Kicker, ProjectCard, Grid, Specs } from '../components/ui'
 
 function Hero() {
   const imgRef = useRef<HTMLDivElement>(null)
@@ -45,9 +45,9 @@ function Hero() {
 }
 
 export default function Home() {
-  const f = featuredProject()
-  const sec = getSection(f.section)
-  const work = latest(6)
+  const fs = getSection(site.featured.section)!
+  const f = getVehicle(fs.slug, site.featured.vehicle)!
+  const work = homeWork(6)
   return (
     <>
       <Hero />
@@ -55,19 +55,14 @@ export default function Home() {
       <section className="wrap section">
         <Reveal>
           <Kicker>Featured project</Kicker>
-          <Link className="feature" to={`/projects/${f.slug}`}>
+          <Link className="feature" to={vehicleUrl(fs, f)}>
             <div className="feature__img">
-              <Img src={f.cover} alt={f.title} label="Featured photograph" />
+              <Img src={f.cover} alt={f.name} label="Featured photograph" />
             </div>
             <div className="feature__body">
-              <h2>{f.title}</h2>
+              <h2>{f.name}</h2>
               <p>{f.summary}</p>
-              <dl className="specs">
-                <div><dt>Discipline</dt><dd>{f.field === 'rocketry' ? 'Rocketry' : 'Drones'}</dd></div>
-                <div><dt>Role</dt><dd>{f.role ?? '—'}</dd></div>
-                <div><dt>Section</dt><dd>{sec?.name ?? '—'}</dd></div>
-                <div><dt>Status</dt><dd>{f.status}</dd></div>
-              </dl>
+              {f.specs && <Specs specs={f.specs.slice(0, 4)} />}
             </div>
           </Link>
         </Reveal>

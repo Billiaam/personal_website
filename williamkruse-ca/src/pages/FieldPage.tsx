@@ -1,9 +1,10 @@
-import { site, fieldLabel, sectionsFor, inSection, latest, type Field } from '../content'
-import { Reveal, SectionCard, ProjectCard, Grid } from '../components/ui'
+import { site, fieldLabel, sectionsFor, inSection, latest, upcoming, type Field } from '../content'
+import { Reveal, SectionCard, ProjectCard, Grid, Kicker } from '../components/ui'
 
 export default function FieldPage({ field }: { field: Field }) {
   const secs = sectionsFor(field)
   const recent = latest(6, field)
+  const next = upcoming(field)
   return (
     <>
       <section className="wrap page-head">
@@ -19,12 +20,17 @@ export default function FieldPage({ field }: { field: Field }) {
         </div>
       </section>
 
+      {next.length > 0 && (
+        <section className="wrap section">
+          <Reveal><Kicker>Upcoming</Kicker><h2 className="h-section">What's next</h2></Reveal>
+          <Grid>{next.map((p, i) => <ProjectCard key={p.slug} p={p} index={i} />)}</Grid>
+        </section>
+      )}
+
       {recent.length > 0 && (
         <section className="wrap section">
           <Reveal><h2 className="h-section">Latest in {fieldLabel[field].toLowerCase()}</h2></Reveal>
-          <Grid>
-            {recent.map((p, i) => <ProjectCard key={p.slug} p={p} index={i} />)}
-          </Grid>
+          <Grid>{recent.map((p, i) => <ProjectCard key={p.slug} p={p} index={i} />)}</Grid>
         </section>
       )}
     </>
