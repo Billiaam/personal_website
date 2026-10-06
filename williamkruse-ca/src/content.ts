@@ -153,13 +153,28 @@ export const sections: Section[] = [
         ],
       },
       {
+        slug: 'small-rocket',
+        name: 'Small Rocket',
+        kicker: '2026',
+        status: 'Event',
+        summary: "CU InSpace's Small Rocket launch day, and the deliberately wonky rockets the execs build for it.",
+        cover: '/images/vehicles/small-rocket.jpg',
+        order: 3,
+        body: [
+          'Not every rocket at CU InSpace needs to break a record.',
+          'Small Rocket is a launch day CU InSpace hosts, built around small, low-power rockets and a lot of fun. It\u2019s a lighter, more hands-on side of the team, and a good excuse to get everyone out to the pad.',
+          '→ **The tradition.** Some of the execs build intentionally unconventional rockets for it. This year\u2019s lineup included a four-motor cluster, a miniature hybrid, and a rocket made from a Sriracha bottle.',
+          '→ **My part.** I spent a good part of the day on the grill, and in between, I flew a rocket of my own.',
+        ],
+      },
+      {
         slug: 'iced-cappogee',
         name: 'Iced Cappogee',
         kicker: '2026',
         status: 'Flown',
         summary: 'The highest amateur hybrid ever flown in Canada. 39,279 ft, 2nd in the Advanced category at Launch Canada 2026.',
         cover: '/images/vehicles/iced-cappogee.jpg',
-        order: 3,
+        order: 4,
         specs: [
           { label: 'Apogee', value: '39,279 ft' },
           { label: 'Result', value: '2nd, Advanced' },
@@ -186,7 +201,7 @@ export const sections: Section[] = [
         status: 'Flown',
         summary: "Carleton's first hybrid rocket, and my first year on the propulsion team.",
         cover: '/images/vehicles/quarter-pounder.jpg',
-        order: 4,
+        order: 5,
         specs: [
           { label: 'Height', value: '14.5 ft' },
           { label: 'Mass', value: '110 lb' },
@@ -345,6 +360,39 @@ export const projects: Project[] = [
       "→ **The test.** We don't have the budget for a dedicated experiment, so the P-class upscale becomes one. Grain length stays fixed while chamber volume grows, and the next static fires will show which way the frequency moves.",
     ],
     tools: ['Python', 'MATLAB'],
+  },
+
+  // ── CU InSpace · Small Rocket ─────────────────────────────
+  {
+    slug: 'rocket-of-doom-and-despair',
+    title: 'The Rocket of Doom and Despair',
+    summary: 'How many fins is too many? A 3D-printed, minimum-diameter rocket with 24 fins and a pair of canards.',
+    section: 'cu-inspace',
+    vehicle: 'small-rocket',
+    field: 'rocketry',
+    date: '2026-10-03',
+    status: 'Flown',
+    role: 'Designer and builder',
+    cover: '/images/projects/rocket-of-doom-and-despair.jpg',
+    specs: [
+      { label: 'Length', value: '52 cm' },
+      { label: 'Diameter', value: '22.5 mm' },
+      { label: 'Fins', value: '24 + 2 canards' },
+      { label: 'Motor', value: 'Estes B6-4' },
+      { label: 'Sim apogee', value: '~155 ft' },
+      { label: 'Material', value: 'PETG, FDM printed' },
+    ],
+    body: [
+      "How many fins is too many? I'm still not sure, but I put 24 to the test.",
+      '→ **The idea.** Part of the Small Rocket tradition is execs building intentionally unconventional rockets. Mine was a minimum-diameter rocket with three rings of eight fins and a pair of canards on the nose cone. On a serious build, that configuration would never make sense. That was the point.',
+      '→ **The build.** The full workflow was mine: designed in OpenRocket, converted into a printable model in FreeCAD, and FDM printed in PETG on a Prusa XL. The body tube, fins, nose cone, canards, and bulkhead were all printed, with elastic shock cords, nylon chute lines, and an Estes B6-4 epoxied directly into the body tube.',
+      '→ **Stability.** With that many fins and canards up front, this was my biggest concern going in. It flew straight off the rail.',
+      "→ **The motor bond.** I wasn't sure the epoxy would survive the heat and thrust. It held perfectly. Maybe too perfectly: the motor is now permanently part of the airframe.",
+      "→ **Recovery.** The parachute never deployed. I'd left enough length for the recovery system but never considered width. At minimum diameter, there was barely room to pack the chute and shock cords, and the epoxy holding the shock cords hadn't fully cured. I had a feeling before launch it wasn't coming out, and I was right.",
+      'The rocket still came down in one piece, and it would be ready to fly again if the motor weren\u2019t stuck in it.',
+      'The lesson: design the recovery bay around the parachute, not the parachute around the bay. Next time, proper motor retention and a recovery bay sized for packing, not just length.',
+    ],
+    tools: ['OpenRocket', 'FreeCAD', '3D printing'],
   },
 
   // ── CU InSpace · Iced Cappogee ────────────────────────────
@@ -643,7 +691,8 @@ export const projects: Project[] = [
 // `tools`. This only controls grouping and order. Anything not listed here
 // lands in "Other". Skills with no projects are hidden.
 export const skillGroups: { name: string; skills: string[] }[] = [
-  { name: 'Design & simulation', skills: ['SolidWorks', 'CATIA', 'Engineering drawings', 'STAR-CCM+', 'OpenRocket'] },
+  { name: 'Design & simulation', skills: ['SolidWorks', 'CATIA', 'FreeCAD', 'Engineering drawings', 'STAR-CCM+', 'OpenRocket'] },
+  { name: 'Fabrication', skills: ['3D printing'] },
   { name: 'Programming & analysis', skills: ['Python', 'MATLAB', 'C'] },
   { name: 'Electronics', skills: ['Altium'] },
   { name: 'Flight', skills: ['Betaflight', 'Liftoff'] },
