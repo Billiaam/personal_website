@@ -26,6 +26,16 @@ export default function SectionPage() {
         </div>
       </section>
 
+      {s.body && s.body.length > 0 && (
+        <section className="wrap detail">
+          <Reveal>
+            <div className="prose">
+              {s.body.map((para, k) => <p key={k}><Rich text={para} /></p>)}
+            </div>
+          </Reveal>
+        </section>
+      )}
+
       {vehicles.length > 0 && (
         <section className="wrap section">
           <Reveal><Kicker>Rockets</Kicker></Reveal>
