@@ -101,11 +101,14 @@ dl { margin: 0; }
 .ph span { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
 /* ── Hero ───────────────────────────────────────────────── */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+.hero { position: relative; min-height: calc(100svh - 68px); display: flex; align-items: flex-end; overflow: hidden; }
 .hero__media { position: absolute; inset: 0; will-change: transform, opacity; }
-.hero__media img, .hero__media .ph { width: 100%; height: 100%; object-fit: cover; }
+.hero__media img, .hero__media .ph { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
 .hero__media .ph { padding: 110px var(--gutter) 0; }
-.hero__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0.15) 0%, rgba(11,11,12,0.05) 40%, rgba(11,11,12,0.82) 78%, var(--bg) 100%); pointer-events: none; }
+.hero__shade { position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(11,11,12,0.78) 0%, rgba(11,11,12,0.45) 38%, rgba(11,11,12,0) 66%),
+    linear-gradient(180deg, rgba(11,11,12,0.15) 0%, rgba(11,11,12,0) 40%, rgba(11,11,12,0.15) 88%, rgba(11,11,12,0.55) 96%, var(--bg) 100%); }
 .hero__copy { position: relative; width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) clamp(48px, 7vw, 96px); display: flex; flex-direction: column; gap: 20px; }
 .hero__copy h1 { font-size: clamp(56px, 11vw, 136px); font-weight: 800; letter-spacing: -0.045em; }
 .hero__fields { font-family: var(--display); font-weight: 600; font-size: clamp(18px, 2.2vw, 28px); }
@@ -226,7 +229,8 @@ dl { margin: 0; }
   .nav__brand span { display: none; }
   .nav__tabs { gap: 18px; }
   .nav__tabs a { font-size: 15px; }
-  .hero { min-height: 92svh; }
+  .hero { min-height: calc(100svh - 60px); }
+  .hero__shade { background: linear-gradient(180deg, rgba(11,11,12,0.15) 0%, rgba(11,11,12,0.1) 30%, rgba(11,11,12,0.8) 72%, var(--bg) 100%); }
   .hero__copy { gap: 14px; padding-bottom: 40px; }
   .hero__copy h1 { font-size: clamp(48px, 15vw, 64px); }
   .hero__copy .btn { height: 42px; padding: 0 18px; font-size: 14px; }
