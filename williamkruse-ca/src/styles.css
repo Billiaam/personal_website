@@ -115,7 +115,7 @@ dl { margin: 0; }
 /* ── Featured ───────────────────────────────────────────── */
 .feature { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; transition: border-color 200ms, transform 300ms var(--ease); }
 .feature:hover { border-color: rgba(255, 255, 255, 0.2); }
-.feature__img { aspect-ratio: 16 / 7; border-radius: var(--radius); overflow: hidden; margin-bottom: 36px; }
+.feature__img { aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; margin-bottom: 36px; }
 .feature__img img, .feature__img .ph { width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease); }
 .feature:hover .feature__img img { transform: scale(1.03); }
 .feature__body h2 { font-size: clamp(32px, 4.4vw, 56px); margin-bottom: 18px; }
