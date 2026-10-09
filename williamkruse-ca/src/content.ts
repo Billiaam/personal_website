@@ -39,6 +39,7 @@ export interface Section {
   field: Field
   intro: string           // one line, used on cards
   description?: string    // longer, shown on the section page
+  body?: string[]         // optional paragraphs shown below the banner
   cover: string
   order: number
   vehicles?: Vehicle[]
@@ -68,7 +69,7 @@ export const site = {
   name: 'William Kruse',
   wordmark: 'WILLIAM KRUSE',
   fields: 'Hybrid rocketry · Unmanned flight',
-  heroLine: 'Aerospace engineering student building propulsion systems and rugged aircraft for work beyond the runway.',
+  heroLine: 'Aerospace engineering student building propulsion systems and rugged aircraft for work beyond the launchpad.',
   heroImage: '/images/hero.jpg',
   heroImageLabel: 'Hardware photo — static fire or flight',
   email: 'will.iamkruse17@gmail.com',
@@ -81,17 +82,18 @@ export const site = {
   resumeUpdated: 'September 2026',
   portrait: '/images/portrait.jpg',
   selectedWorkTitle: 'Built for the test stand and the field.',
-  lookingFor: 'Seeking co-op placements in propulsion, testing, or unmanned systems — 4 or 12 months.',
+  lookingFor: 'Seeking co-op placements in propulsion, testing, or unmanned systems - 4 or 12 months.',
   // The featured card on the home page. Points at a rocket page.
   featured: { section: 'cu-inspace', vehicle: 'iced-cappogee' },
   about: [
-    "I'm an aerospace engineering student at Carleton University in Ottawa, originally from Calgary. My work sits in two fields: hybrid rocket propulsion and unmanned flight.",
-    "I lead propulsion at CU InSpace. In 2026, our rocket Iced Cappogee reached 39,279 ft, the highest amateur hybrid ever flown in Canada. This year I'm moving the team to static-cast fuel grains and scaling our motor to P-class, while building LUNARE, my own Tripoli certification rocket, and the flight computer that will fly on it.",
-    "Drones are where I'm headed. I hold a Transport Canada RPAS certificate, train in simulation every week, and contributed to Carleton's award-winning entry in the VFS Student Design Competition. The goal is rugged unmanned aircraft for conservation and science in places conventional platforms can't reach, and the flight computer is the first piece I'm building toward it.",
-    'Outside of engineering: music, creativity, and time outdoors.',
+    "I'm an Aerospace Engineering student at Carleton University in Ottawa, originally from Calgary. My work sits in two fields: hybrid rocket propulsion and unmanned flight.",
+    "Currently I'm one of five propulsion leads at CU InSpace, Carleton's rocketry club.",
+    "In 2026, our rocket Iced Cappogee reached 39,279 ft, the highest amateur hybrid ever flown in Canada. This year I'm moving the team to static-cast fuel grains and scaling our motor to a P-class. Outside of the club, I am building LUNARE, my own Tripoli certification rocket, as well as developing the flight computer that will fly on it.",
+    "Drones are where I'm headed. I hold a Transport Canada RPAS certificate, train in simulation every week, and contributed to Carleton's award-winning entry in the 2026 VFS Student Design Competition. The end goal is rugged unmanned aircraft for conservation and UAVs in places conventional platforms can't reach. The flight computer is the first piece I'm building towards it.",
+    'Outside of engineering: music, football and the outdoors.',
   ],
   fieldIntro: {
-    rocketry: 'Hybrid propulsion, test stands, and everything it takes to turn hardware into a flight.',
+    rocketry: 'SRAD hybrid propulsion, high-powered rocketry, and the test campaigns that get them off the pad.',
     drones: "I'm certified to fly and training toward building. Long term, I want to build rugged unmanned aircraft for conservation and science in places conventional platforms can't go. My first quad build is next.",
   } as Record<Field, string>,
 }
@@ -112,13 +114,13 @@ export const sections: Section[] = [
     field: 'rocketry',
     intro: "Carleton's student rocketry team. We design, build, and fly SRAD hybrids.",
     description:
-      "Carleton's student rocketry team. We design, build, and fly SRAD hybrid rockets at Launch Canada and IREC. I joined the propulsion team in 2024 and have led it since 2025. This year we're flying a solid-to-solid two-stage at IREC and a P-class hybrid at Launch Canada, while starting a two-year design cycle for an 8-inch Q-class motor. Each rocket below has its own page with the projects I worked on for it.",
+      "Carleton's student rocketry team. We design, build, and fly SRAD hybrid rockets at Launch Canada and IREC. I joined the propulsion team in 2024 and have been one of its five leads since 2025. This year we're flying a solid-to-solid two-stage at IREC and a P-class hybrid at Launch Canada, while starting a two-year design cycle for an 8-inch Q-class motor. Check out the projects I worked on below.",
     cover: '/images/sections/cu-inspace.jpg',
     order: 1,
     vehicles: [
       {
         slug: 'q-class-hybrid',
-        name: '8-inch Q-class hybrid',
+        name: '8-inch Q-class hybrid (SB-5)',
         kicker: 'Upcoming',
         status: 'Upcoming',
         summary: 'The lightest Q-class hybrid we can build, with a thrust-to-weight of at least 10.',
@@ -126,14 +128,14 @@ export const sections: Section[] = [
         order: 1,
         body: [
           "The 8-inch is the next step after the P-class, and the most ambitious motor CU InSpace has taken on.",
-          "It runs on a two-year design cycle. Design starts once the P-class locks this winter, with the goal of a motor ready to static fire by the end of summer 2027 and a flight at Launch Canada after that.",
+          "It runs on a two-year design cycle. Design starts this winter after the P-class, with the goal of the motor being ready to static fire by the end of summer 2027. The Q-class is planned to fly at Launch Canada 2028.",
           "→ **Why it drives this year's work.** At this scale, spin casting a fuel grain stops being safe. Spinning a grain that large is a stability problem before it's a manufacturing one. That's the main reason I'm developing static casting now, a full year before we need it.",
           'Projects for this rocket will appear here as the design cycle starts.',
         ],
       },
       {
         slug: 'p-class-hybrid',
-        name: 'P-class hybrid',
+        name: '6-inch P-class hybrid (SB-4)',
         kicker: '2027',
         status: 'In design',
         summary: 'Iced Cappogee, but bigger. A P-class hybrid for Launch Canada 2027.',
@@ -149,32 +151,17 @@ export const sections: Section[] = [
           'After setting a Canadian record, the obvious question was how much further the same architecture could go.',
           "The P-class keeps Iced Cappogee's proven layout and scales it up. We're stretching the oxidizer tank by two feet and widening the combustion chamber by half an inch, which moves the motor from O-class into P-class while keeping the fuel grain the same length.",
           'The plan is to lock the design by November–December, static fire as much as we can through the winter and spring, and fly at Launch Canada 2027.',
-          "→ **My role.** As Propulsion Lead I'm overseeing the full motor, and running four projects directly: static casting, the B⁵C spin caster, and the injector and mixing plate upscales. The upscale also doubles as our next experiment on the 54 Hz instability we saw on Iced Cappogee.",
-        ],
-      },
-      {
-        slug: 'small-rocket',
-        name: 'Small Rocket',
-        kicker: '2026',
-        status: 'Event',
-        summary: "CU InSpace's Small Rocket launch day, and the deliberately wonky rockets the execs build for it.",
-        cover: '/images/vehicles/small-rocket.jpg',
-        order: 3,
-        body: [
-          'Not every rocket at CU InSpace needs to break a record.',
-          'Small Rocket is a launch day CU InSpace hosts, built around small, low-power rockets and a lot of fun. It\u2019s a lighter, more hands-on side of the team, and a good excuse to get everyone out to the pad.',
-          '→ **The tradition.** Some of the execs build intentionally unconventional rockets for it. This year\u2019s lineup included a four-motor cluster, a miniature hybrid, and a rocket made from a Sriracha bottle.',
-          '→ **My part.** I spent a good part of the day on the grill, and in between, I flew a rocket of my own.',
+          "→ **My role.** As Propulsion Lead I'm overseeing the full motor, and running five projects directly: static casting, the B⁵C spin caster, and the injector, mixing plate, and igniter upscales. The upscale also doubles as our next experiment on the 54 Hz instability we saw on Iced Cappogee.",
         ],
       },
       {
         slug: 'iced-cappogee',
-        name: 'Iced Cappogee',
+        name: 'Iced Cappogee (SB-3)',
         kicker: '2026',
         status: 'Flown',
         summary: 'The highest amateur hybrid ever flown in Canada. 39,279 ft, 2nd in the Advanced category at Launch Canada 2026.',
         cover: '/images/vehicles/iced-cappogee.jpg',
-        order: 4,
+        order: 3,
         specs: [
           { label: 'Apogee', value: '39,279 ft' },
           { label: 'Result', value: '2nd, Advanced' },
@@ -186,22 +173,22 @@ export const sections: Section[] = [
           { label: 'Liquid burn', value: '8.3 s' },
         ],
         body: [
-          'Iced Cappogee was an 11.5 ft rocket on SB-3, our third-generation nitrous/paraffin motor. It was my first Launch Canada and my first year as Propulsion Lead. I set the motor\u2019s technical direction, ran the static-fire campaign, owned the mixing plate, fuel formulation, and casting environment, and helped size the injector.',
+          "Iced Cappogee was an 11.5 ft tall rocket which flew on our third-generation nitrous/paraffin motor, the SB-3. It was my first Launch Canada and my first year as Propulsion Lead. As part of an executive team of five, I helped set the motor's technical direction, helped run the cold-flow and static-fire campaign, and helped size the injector, and I developed the mixing plate, fuel formulation, and casting environment.",
           'The flight was the headline. Getting it off the rail was the story.',
           "→ **Qualifying.** We needed static-fire data just to be eligible to fly. Our first attempt at Morrison's Quarry ended when wind vibrated a solder joint loose and the fire valve never opened. The second burned a hole through the chamber wall at the injector plate, where a gap left by an old vent cut-out wasn't protected, and a lean, hot burn made it worse. We machined a new injector plate without the cut-out, sealed it properly, and the third fire ran full duration.",
           "→ **The nose cone.** In pre-flight testing at competition, the nose cone wouldn't separate. Same recovery architecture, same charge design, same hardware, and it just wouldn't move. Our working theory was gas venting through the arming-switch access holes. We tested, added powder, tested again, and landed on a 5 g charge with a redundant 7 g, which I helped build. In flight, they worked exactly as intended.",
           "→ **The EGSE.** Then our ground control box died. The MOSFETs kept frying and taking the Picos with them, so we could read pressures but couldn't actuate the valves. No ground control means no launch. The McGill Rocket Team handed over their spare MOSFETs without hesitation, we rebuilt the box overnight, and we flew the next day.",
-          'Recovery was nominal on our reefed main. Two subsystems failing in ways we hadn\u2019t predicted, and another team lending us parts when we needed them most. That\u2019s what makes Launch Canada special.',
+          "Recovery was nominal on our reefed main, and the rocket landed safely in Ontario's boreal forest.",
         ],
       },
       {
         slug: 'quarter-pounder',
-        name: 'Quarter Pounder',
+        name: 'Quarter Pounder (SB-1, SB-2)',
         kicker: '2025',
         status: 'Flown',
         summary: "Carleton's first hybrid rocket, and my first year on the propulsion team.",
         cover: '/images/vehicles/quarter-pounder.jpg',
-        order: 5,
+        order: 4,
         specs: [
           { label: 'Height', value: '14.5 ft' },
           { label: 'Mass', value: '110 lb' },
@@ -210,8 +197,8 @@ export const sections: Section[] = [
         ],
         body: [
           "Quarter Pounder is where CU InSpace's hybrid program started.",
-          'It was a 14.5 ft, 110 lb rocket on SB-2, a nitrous/paraffin O-class motor. Our first-ever static fire, at Reaction Dynamics, beat predictions with 5.7 kN of peak thrust.',
-          '→ **Getting to the pad.** Late in the cycle we had to switch to a UC valve. We were short on time, and Launch Canada had concerns about our original valve design. We proved the new configuration on a static fire a few weeks before competition, and we flew.',
+          'It was a 14.5 ft tall, 110 lb rocket which flew on our second-generation O-class nitrous/paraffin motor, the SB-2. Our first-ever static fire, at Reaction Dynamics, beat predictions with 5.7 kN of peak thrust.',
+          '→ **Getting to the pad.** Late in the cycle we had to switch to a UC valve (SB-1 → SB-2). We were short on time, and Launch Canada had concerns about our original valve design. We proved the new configuration on a static fire a few weeks before competition, and we flew.',
           "→ **The flight.** The rocket left the rail, but the airframe didn't survive. The main body tube shredded in flight.",
           "→ **My role.** I was a general member of the propulsion team that year. I co-designed the propulsion system, designed the mixing plate, helped build and run fuel casting, manufactured the igniters, and helped conduct cold flows and leak tests. A lot of what I'm leading now started here.",
         ],
@@ -227,6 +214,20 @@ export const sections: Section[] = [
       "My personal high-power rocketry program. One rocket, both certification flights, and a flight computer I'm building from scratch. This one is all mine, designed and built separately from CU InSpace.",
     cover: '/images/sections/tripoli.jpg',
     order: 2,
+  },
+  {
+    slug: 'small-rocket',
+    name: 'Small Rocket',
+    field: 'rocketry',
+    intro: "CU InSpace's low-power rocket launch day.",
+    cover: '/images/sections/small-rocket.jpg',
+    order: 3,
+    body: [
+      'Not every rocket at CU InSpace needs to break a record.',
+      "Small Rocket is an event CU InSpace hosts, built around small, low-power rockets. It's a fun, lighter, more hands-on side of CU InSpace's rocketry, and a good excuse to get everyone out to the pad.",
+      '→ **The tradition.** Some of the execs build intentionally unconventional rockets for it. Over the years, execs have flown two-stages, clusters, miniature hybrids, and rockets made from condiment bottles.',
+      "→ **My part.** As a part of CU InSpace's exec team, I too partake in the tradition, CADing, simulating, and 3D printing unconventional rockets of my own.",
+    ],
   },
   {
     slug: 'unmanned-vtol',
@@ -266,7 +267,7 @@ export const projects: Project[] = [
       '→ **The mould.** Our flight phenolic liner forms the outer wall, sleeved in stainless steel, around a carbon-steel mandrel that forms the port. Everything is preheated to 90 °C and coated with mould release before pouring.',
       '→ **Controlling solidification.** A detachable stainless riser sits on top, wrapped in ceramic blanket and heated from above by a variable heat lamp. Keeping the top molten means the grain solidifies bottom-up and inside-out, and the riser feeds material down as it shrinks.',
       '→ **Degassing and cooling.** After pouring, the whole mould goes under vacuum to pull out voids, then cools radially for about 20 hours, unattended.',
-      "It's early in development and genuinely hard, which is exactly why it's worth starting now, a full year before the 8-inch needs it.",
+      "It's early in development and an engineering challenge, which is exactly why it's worth starting now, a full year before the 8-inch needs it.",
     ],
     lineage: 'fuel-manufacturing',
     generation: 4,
@@ -316,7 +317,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'mixing-plate-gen-3',
-    title: 'Mixing plate, generation three',
+    title: 'Mixing plate (Gen 3)',
     summary: 'Scaling up the plate that survived, and using CFD to make sure it never becomes a second throat.',
     section: 'cu-inspace',
     vehicle: 'p-class-hybrid',
@@ -335,6 +336,26 @@ export const projects: Project[] = [
     tools: ['STAR-CCM+', 'SolidWorks', 'Engineering drawings'],
     lineage: 'mixing-plate',
     generation: 3,
+  },
+  {
+    slug: 'igniter-upscale',
+    title: 'Igniter upscale',
+    summary: "Extending Iced Cappogee's igniter for the larger P-class chamber, and refining the manufacturing documents I first wrote for Quarter Pounder.",
+    section: 'cu-inspace',
+    vehicle: 'p-class-hybrid',
+    field: 'rocketry',
+    date: '2026-09-08',
+    status: 'In development',
+    role: 'Contributor',
+    cover: '/images/projects/igniter-upscale.jpg',
+    body: [
+      'A bigger chamber needs an igniter that can reliably light it.',
+      "→ **The design.** Rather than starting over, we're taking the igniter design that lit Iced Cappogee and extending it to suit the P-class motor's larger chamber.",
+      '→ **The documentation.** I\u2019m also refining the igniter manufacturing documents I wrote for Quarter Pounder, so the upscaled igniter can be built the same way every time, by anyone on the team.',
+      'A proven design, scaled carefully, and documented properly.',
+    ],
+    lineage: 'igniter',
+    generation: 2,
   },
   {
     slug: 'combustion-instability-54hz',
@@ -362,13 +383,12 @@ export const projects: Project[] = [
     tools: ['Python', 'MATLAB'],
   },
 
-  // ── CU InSpace · Small Rocket ─────────────────────────────
+  // ── Small Rocket ──────────────────────────────────────────
   {
     slug: 'rocket-of-doom-and-despair',
     title: 'The Rocket of Doom and Despair',
     summary: 'How many fins is too many? A 3D-printed, minimum-diameter rocket with 24 fins and a pair of canards.',
-    section: 'cu-inspace',
-    vehicle: 'small-rocket',
+    section: 'small-rocket',
     field: 'rocketry',
     date: '2026-10-03',
     status: 'Flown',
@@ -383,8 +403,9 @@ export const projects: Project[] = [
       { label: 'Material', value: 'PETG, FDM printed' },
     ],
     body: [
-      "How many fins is too many? I'm still not sure, but I put 24 to the test.",
-      '→ **The idea.** Part of the Small Rocket tradition is execs building intentionally unconventional rockets. Mine was a minimum-diameter rocket with three rings of eight fins and a pair of canards on the nose cone. On a serious build, that configuration would never make sense. That was the point.',
+      '24 fins. 2 canards. How many is too many for a lawn dart?',
+      "→ **The event.** At this year's Small Rocket, the lineup included a four-motor cluster, a miniature hybrid, and a rocket made from a Sriracha bottle. I spent a good part of the day on the grill, and in between, I flew this one.",
+      '→ **The idea.** My entry was a minimum-diameter rocket with three rings of eight fins and a pair of canards on the nose cone. On a serious build, that configuration would never make sense. That was the point.',
       '→ **The build.** The full workflow was mine: designed in OpenRocket, converted into a printable model in FreeCAD, and FDM printed in PETG on a Prusa XL. The body tube, fins, nose cone, canards, and bulkhead were all printed, with elastic shock cords, nylon chute lines, and an Estes B6-4 epoxied directly into the body tube.',
       '→ **Stability.** With that many fins and canards up front, this was my biggest concern going in. It flew straight off the rail.',
       "→ **The motor bond.** I wasn't sure the epoxy would survive the heat and thrust. It held perfectly. Maybe too perfectly: the motor is now permanently part of the airframe.",
@@ -398,7 +419,7 @@ export const projects: Project[] = [
   // ── CU InSpace · Iced Cappogee ────────────────────────────
   {
     slug: 'showerhead-injector-sb3',
-    title: 'Showerhead injector, SB-3',
+    title: 'Showerhead injector',
     summary: "Our first flight-proven showerhead injector: 94 holes, sized from cold-flow data.",
     section: 'cu-inspace',
     vehicle: 'iced-cappogee',
@@ -423,7 +444,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'mixing-plate-gen-2',
-    title: 'Mixing plate, generation two',
+    title: 'Mixing plate (Gen 2)',
     summary: "Last year's test plate came out of the chamber in pieces. This one came back charred, but in one piece.",
     section: 'cu-inspace',
     vehicle: 'iced-cappogee',
@@ -436,7 +457,7 @@ export const projects: Project[] = [
       "Not much can survive the heat of a rocket's combustion chamber. Last year's test plate didn't. This year's did.",
       "→ **Material.** Stainless steel, chosen purely for survivability. If the plate can't stay in the flow, none of the mixing it does matters.",
       "→ **Coating.** SOAR had run a ceramic coating on their own plate and generously shared their application procedure. I refined it into my own process: a base coat of ITC 213 for oxidation and erosion resistance, under ITC 100 HT, which is rated to 5000 °F.",
-      '→ **Geometry.** I iterated through eight- and six-port designs before a conversation with Peter Tarle got me to four equal-area ports. Simple is better. Fewer features, fewer edges to erode, fewer things to get wrong.',
+      '→ **Geometry.** I iterated through eight and six port designs before a conversation with Peter Tarle got me to four equal-area ports. Simple is better. Fewer features, fewer edges to erode, fewer things to get wrong.',
       "→ **Port area.** Sized at more than twice the nozzle throat area. If the gas chokes at the plate instead of the nozzle, you've built a second throat in the middle of your chamber.",
       'It came back charred, with visible regression on the spokes. But it survived the entire burn. That\u2019s the win.',
     ],
@@ -446,7 +467,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'eva-fuel-formulation',
-    title: 'EVA fuel formulation',
+    title: 'Paraffin/EVA fuel formulation',
     summary: "Slowing down paraffin's regression rate without making the grain any bigger.",
     section: 'cu-inspace',
     vehicle: 'iced-cappogee',
@@ -497,7 +518,7 @@ export const projects: Project[] = [
   // ── CU InSpace · Quarter Pounder ──────────────────────────
   {
     slug: 'mixing-plate-gen-1',
-    title: 'Mixing plate, generation one',
+    title: 'Mixing plate (Gen 1)',
     summary: 'My idea for our first hybrid: a plate that mixes unburned oxidizer and fuel-rich gas before they reach the nozzle.',
     section: 'cu-inspace',
     vehicle: 'quarter-pounder',
@@ -508,7 +529,7 @@ export const projects: Project[] = [
     cover: '/images/projects/mixing-plate-gen-1.jpg',
     body: [
       'The mixing plate was my idea, and my first real design on the team.',
-      '→ **Why a mixing plate.** In a hybrid, oxidizer races down the port while fuel vapour stays close to the wall, so a lot of oxidizer leaves the nozzle without ever burning. A plate in the post-combustion chamber introduces strategic turbulence, forcing the gases to contract, expand, and mix before the throat. Better mixing means more complete combustion, which means more performance.',
+      "→ **Why a mixing plate.** In a hybrid, fuel vapour comes off the grain wall while the oxidizer flows down the core of the port. Combustion and turbulence already mix the two a fair amount inside the chamber, but not completely, and hot gases that don't fully mix mean incomplete combustion. A plate in the post-combustion chamber introduces strategic turbulence, forcing the gases to contract, expand, and mix before the throat. Better mixing means more complete combustion, which means better performance.",
       '→ **First attempt.** The first test plate was machined from phenolic. It burned through partway into a static fire and took the retaining ring and graphite nozzle with it.',
       '→ **Flight version.** For flight we moved to 1/2" 304 stainless, retained between two phenolic liners, with RTV insulating the edges and coating the face toward the grain to limit radiative heating.',
       'Surviving a full-duration burn was still the open problem. That became the entire brief for generation two.',
@@ -549,6 +570,8 @@ export const projects: Project[] = [
     status: 'Complete',
     role: 'Team member',
     cover: '/images/projects/igniter-and-procedures.jpg',
+    lineage: 'igniter',
+    generation: 1,
     body: [
       "Every static fire starts with the igniter, and an igniter that doesn't light is a wasted test day.",
       '→ **Manufacturing.** I built the team\u2019s composite igniters and wrote the manufacturing procedure, so anyone on the team could make one the same way.',
@@ -663,10 +686,10 @@ export const projects: Project[] = [
     cover: '/images/projects/liftoff-training.jpg',
     body: [
       "I started in simulation before touching a real quad, and I'm glad I did.",
-      "→ **Simulation.** I fly Liftoff three to four hours a week, acro from day one plus freestyle. On advice from Briac Dancer, I matched Liftoff: Micro Drones' rates to my Air75's Betaflight values, which made the jump to real hardware noticeably smoother.",
-      "→ **First flights.** This August I flew my BetaFPV Air75 for the first time, a milestone I'd planned back in July. Stavros Messinis's first-flight protocol, walking the quad around before flying, made the goggles feel natural much faster. A month of sim reps meant I could fly without much trouble on day one. A few minutes in, I crashed it straight into the ground.",
+      "→ **Simulation.** I fly Liftoff three to four hours a week, acro from day one plus freestyle. I matched Liftoff: Micro Drones' rates to my Air75's Betaflight values, which made the jump to real hardware noticeably smoother.",
+      "→ **First flights.** This August I flew my BetaFPV Air75 for the first time, a milestone I'd planned back in July. A month of sim reps meant I could fly without much trouble on day one. A few minutes in, I crashed it straight into the ground.",
       "→ **What the sim can't teach.** Battery sag cutting motors at low voltage, video-signal behaviour, and wind you can feel in the sticks. Simulators build the reflexes. Fly, crash, diagnose, fly again is where the skill actually compounds.",
-      'Next: weekly practice and first outdoor footage sessions this fall.',
+      'Next: weekly practice and first outdoor footage sessions this winter.',
     ],
     tools: ['Liftoff', 'Betaflight'],
   },
