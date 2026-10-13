@@ -159,7 +159,10 @@ dl { margin: 0; }
 .banner__media { position: absolute; inset: 0; }
 .banner__media img, .banner__media .ph { width: 100%; height: 100%; object-fit: cover; }
 .banner__media .ph { padding: 100px var(--gutter) 0; }
-.banner__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0.2) 0%, rgba(11,11,12,0.85) 80%, var(--bg) 100%); }
+.banner__shade { position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11,11,12,0.9) 0%, rgba(11,11,12,0.72) 42%, rgba(11,11,12,0.15) 75%),
+    linear-gradient(180deg, rgba(11,11,12,0.2) 0%, rgba(11,11,12,0) 40%, rgba(11,11,12,0.25) 85%, var(--bg) 100%); }
 .banner__copy { position: relative; width: 100%; padding-bottom: clamp(32px, 5vw, 64px); }
 .banner__copy h1 { font-size: clamp(44px, 8vw, 96px); font-weight: 800; letter-spacing: -0.04em; margin-bottom: 20px; }
 
@@ -232,6 +235,7 @@ dl { margin: 0; }
   .hero { min-height: calc(100svh - 60px); }
   .hero__shade { background: linear-gradient(180deg, rgba(11,11,12,0.15) 0%, rgba(11,11,12,0.05) 22%, rgba(11,11,12,0.72) 42%, rgba(11,11,12,0.6) 66%, rgba(11,11,12,0.05) 80%, rgba(11,11,12,0.35) 95%, var(--bg) 100%); }
   .hero__copy { padding-bottom: max(24vh, 150px); }
+  .banner__shade { background: linear-gradient(180deg, rgba(11,11,12,0.25) 0%, rgba(11,11,12,0.55) 45%, rgba(11,11,12,0.88) 80%, var(--bg) 100%); }
   .hero__copy { gap: 14px; }
   .hero__copy h1 { font-size: clamp(48px, 15vw, 64px); }
   .hero__copy .btn { height: 42px; padding: 0 18px; font-size: 14px; }

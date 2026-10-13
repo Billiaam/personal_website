@@ -28,6 +28,7 @@ export interface Vehicle {
   status: string
   summary: string
   cover: string
+  coverPosition?: string  // CSS object-position, e.g. 'center 70%'
   specs?: Spec[]
   body: string[]
   order: number           // lower = higher on the page
@@ -41,6 +42,7 @@ export interface Section {
   description?: string    // longer, shown on the section page
   body?: string[]         // optional paragraphs shown below the banner
   cover: string
+  coverPosition?: string
   order: number
   vehicles?: Vehicle[]
 }
@@ -56,6 +58,7 @@ export interface Project {
   status: string          // Flown · Tested · Complete · In development · Early design · Awaiting test · In build · Upcoming
   role?: string
   cover: string
+  coverPosition?: string
   gallery?: string[]
   specs?: Spec[]
   body: string[]
@@ -116,6 +119,7 @@ export const sections: Section[] = [
     description:
       "Carleton's student rocketry team. We design, build, and fly SRAD hybrid rockets at Launch Canada and IREC. I joined the propulsion team in 2024 and have been one of its five leads since 2025. This year we're flying a solid-to-solid two-stage at IREC and a P-class hybrid at Launch Canada, while starting a two-year design cycle for an 8-inch Q-class motor. Check out the projects I worked on below.",
     cover: '/images/sections/cu-inspace.jpg',
+    coverPosition: 'center 75%',
     order: 1,
     vehicles: [
       {
@@ -221,6 +225,7 @@ export const sections: Section[] = [
     field: 'rocketry',
     intro: "CU InSpace's low-power rocket launch day.",
     cover: '/images/sections/small-rocket.jpg',
+    coverPosition: 'center 92%',
     order: 3,
     body: [
       'Not every rocket at CU InSpace needs to break a record.',
@@ -500,6 +505,7 @@ export const projects: Project[] = [
     status: 'Complete',
     role: 'Design lead',
     cover: '/images/projects/bbbc-2-casting-environment.jpg',
+    gallery: ['/images/projects/bbbc-2-casting-environment-1.jpg'],
     specs: [
       { label: 'Temperature hold', value: '±1.5 °C outdoors' },
       { label: 'Cost', value: 'Under $100' },
