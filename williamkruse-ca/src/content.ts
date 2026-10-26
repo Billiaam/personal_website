@@ -593,13 +593,16 @@ export const projects: Project[] = [
     role: 'Team member',
     cover: '/images/projects/igniter.jpg',
     coverPosition: 'center 35%',
+    gallery: ['/images/projects/igniter-1.jpg', '/images/projects/igniter-2.jpg', '/images/projects/igniter-3.jpg', '/images/projects/igniter.jpg'],
     lineage: 'igniter',
     generation: 1,
     body: [
       "Every static fire starts with the igniter, and an igniter that doesn't light is a wasted test day.",
-      '→ **Manufacturing.** I built the team\u2019s composite igniters and wrote the manufacturing procedure, so anyone on the team could make one the same way.',
+      '→ **The igniter.** Each one is a puck of potassium nitrate in an epoxy binder, cast in a one-time-use 3D-printed mould with a coiled nichrome wire set into the paste. The puck cures under its lid for 48 hours so the top stays flat.',
+      '→ **Sizing the coil.** The wire length comes from the firing voltage and the current we want. We work back to a target resistance, then use a length-to-resistance calculator to cut the coil.',
+      '→ **Manufacturing.** I built the team\u2019s composite igniters and wrote the manufacturing procedure, from PPE and mixing to waxing the mould and curing, so anyone on the team could make one the same way.',
       '→ **Verification.** I made sure each igniter worked before it went into a test, so it was one less thing to worry about on test day.',
-      'One less variable on the pad.',
+      'Simple part. No room for error.',
     ],
   },
   {
