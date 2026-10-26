@@ -57,7 +57,7 @@ export default function Home() {
           <Kicker>Featured project</Kicker>
           <Link className="feature" to={vehicleUrl(fs, f)}>
             <div className="feature__img">
-              <Img src={f.cover} alt={f.name} label="Featured photograph" />
+              <Img src={f.cover} alt={f.name} label="Featured photograph" position={f.coverPosition} />
             </div>
             <div className="feature__body">
               <h2>{f.name}</h2>

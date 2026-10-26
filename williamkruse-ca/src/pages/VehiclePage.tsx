@@ -16,7 +16,7 @@ export default function VehiclePage() {
   return (
     <>
       <div className="detail__hero">
-        <Img src={v.cover} alt={v.name} label="Rocket photograph" />
+        <Img src={v.cover} alt={v.name} label="Rocket photograph" position={v.coverPosition} />
       </div>
       <article className="wrap detail">
         <Reveal>
@@ -31,6 +31,11 @@ export default function VehiclePage() {
           <div className="prose">
             {v.body.map((para, k) => <p key={k}><Rich text={para} /></p>)}
           </div>
+          {v.links && (
+            <ul className="links">
+              {v.links.map((l) => <li key={l.url}><a href={l.url} target="_blank" rel="noreferrer">{l.label} ↗</a></li>)}
+            </ul>
+          )}
         </Reveal>
       </article>
 

@@ -14,7 +14,7 @@ export default function SectionPage() {
     <>
       <section className="banner">
         <div className="banner__media">
-          <Img src={s.cover} alt="" label="Program photograph" />
+          <Img src={s.cover} alt="" label="Program photograph" position={s.coverPosition} />
         </div>
         <div className="banner__shade" aria-hidden="true" />
         <div className="wrap banner__copy">

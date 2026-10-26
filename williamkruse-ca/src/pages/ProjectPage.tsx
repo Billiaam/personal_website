@@ -21,7 +21,7 @@ export default function ProjectPage() {
   return (
     <>
       <div className="detail__hero">
-        <Img src={p.cover} alt={p.title} label="Project photograph" />
+        <Img src={p.cover} alt={p.title} label="Project photograph" position={p.coverPosition} />
       </div>
       <article className="wrap detail">
         <Reveal>
@@ -56,12 +56,26 @@ export default function ProjectPage() {
             </ul>
           )}
         </Reveal>
+        {p.videos && p.videos.length > 0 && (
+          <div className="videos">
+            {p.videos.map((v) => (
+              <Reveal key={v.src}>
+                <figure className="video">
+                  <video controls playsInline preload="metadata" poster={v.poster}>
+                    <source src={v.src} type="video/mp4" />
+                  </video>
+                  {v.caption && <figcaption>{v.caption}</figcaption>}
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        )}
         {p.gallery && p.gallery.length > 0 && (
           <div className="gallery">
             {p.gallery.map((g, i) => (
-              <Reveal key={g} delay={i * 60}>
-                <div className="gallery__item"><Img src={g} alt={`${p.title} — image ${i + 1}`} label={`Photo ${i + 1}`} /></div>
-              </Reveal>
+              <a key={g} className="gallery__item" href={g} target="_blank" rel="noreferrer">
+                <Img src={g} alt={`${p.title} — image ${i + 1}`} label={`Photo ${i + 1}`} />
+              </a>
             ))}
           </div>
         )}

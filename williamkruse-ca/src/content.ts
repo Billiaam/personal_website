@@ -20,6 +20,7 @@
 export type Field = 'rocketry' | 'drones'
 export interface Spec { label: string; value: string }
 export interface LinkRef { label: string; url: string }
+export interface Video { src: string; poster?: string; caption?: string }
 
 export interface Vehicle {
   slug: string
@@ -31,6 +32,7 @@ export interface Vehicle {
   coverPosition?: string  // CSS object-position, e.g. 'center 70%'
   specs?: Spec[]
   body: string[]
+  links?: LinkRef[]
   order: number           // lower = higher on the page
 }
 
@@ -60,6 +62,7 @@ export interface Project {
   cover: string
   coverPosition?: string
   gallery?: string[]
+  videos?: Video[]
   specs?: Spec[]
   body: string[]
   tools?: string[]
@@ -193,6 +196,7 @@ export const sections: Section[] = [
         summary: "Carleton's first hybrid rocket, and my first year on the propulsion team.",
         cover: '/images/vehicles/quarter-pounder.jpg',
         order: 4,
+        links: [{ label: 'Launch Canada 2025 design report (PDF)', url: '/docs/quarter-pounder-lc2025-design-report.pdf' }],
         specs: [
           { label: 'Height', value: '14.5 ft' },
           { label: 'Mass', value: '110 lb' },
@@ -399,6 +403,8 @@ export const projects: Project[] = [
     status: 'Flown',
     role: 'Designer and builder',
     cover: '/images/projects/rocket-of-doom-and-despair.jpg',
+    videos: [{ src: '/videos/rocket-of-doom-launch.mp4', poster: '/videos/rocket-of-doom-launch.jpg', caption: 'Launch day at Small Rocket.' }],
+    gallery: ['/images/projects/rocket-of-doom-and-despair-1.jpg', '/images/projects/rocket-of-doom-and-despair-2.jpg'],
     specs: [
       { label: 'Length', value: '52 cm' },
       { label: 'Diameter', value: '22.5 mm' },
@@ -533,6 +539,8 @@ export const projects: Project[] = [
     status: 'Flown',
     role: 'Designer',
     cover: '/images/projects/mixing-plate-gen-1.jpg',
+    coverPosition: 'center 22%',
+    gallery: ['/images/projects/mixing-plate-gen-1.jpg'],
     body: [
       'The mixing plate was my idea, and my first real design on the team.',
       "→ **Why a mixing plate.** In a hybrid, fuel vapour comes off the grain wall while the oxidizer flows down the core of the port. Combustion and turbulence already mix the two a fair amount inside the chamber, but not completely, and hot gases that don't fully mix mean incomplete combustion. A plate in the post-combustion chamber introduces strategic turbulence, forcing the gases to contract, expand, and mix before the throat. Better mixing means more complete combustion, which means better performance.",
@@ -576,6 +584,8 @@ export const projects: Project[] = [
     status: 'Complete',
     role: 'Team member',
     cover: '/images/projects/igniter-and-procedures.jpg',
+    coverPosition: 'center 35%',
+    gallery: ['/images/projects/igniter-and-procedures-1.jpg', '/images/projects/igniter-and-procedures-2.jpg'],
     lineage: 'igniter',
     generation: 1,
     body: [
@@ -658,7 +668,7 @@ export const projects: Project[] = [
       `→ **The result.** The team won Best New Undergraduate Entrant out of 17 proposals from universities in 4 countries. Supervised by ${P.laliberte}.`,
     ],
     links: [
-      { label: 'Executive summary (VFS)', url: 'https://vtol.org/files/dmfile/newentry-undergrad_ug9_execsummary_carletonuniv_ravens_sdc2026.pdf' },
+      { label: 'Executive summary (PDF)', url: '/docs/vfs-ravens-executive-summary.pdf' },
       { label: 'VFS winners announcement', url: 'https://vtol.org/news/press-release-vfs-announces-43rd-2026-student-design-winners-and-releases-44th-2027-sdc-rfp' },
       { label: 'Carleton MAE news', url: 'https://carleton.ca/mae/2026/congrats-to-team-ravens-vfs-student-design-competition-best-new-entrant/' },
     ],
@@ -690,6 +700,9 @@ export const projects: Project[] = [
     date: '2026-09-25',
     status: 'In development',
     cover: '/images/projects/liftoff-training.jpg',
+    coverPosition: 'center 45%',
+    videos: [{ src: '/videos/first-flight-dvr.mp4', poster: '/videos/first-flight-dvr.jpg', caption: 'Goggle footage from my first flights on the Air75.' }],
+    gallery: ['/images/projects/liftoff-training-1.jpg', '/images/projects/liftoff-training-2.jpg'],
     body: [
       "I started in simulation before touching a real quad, and I'm glad I did.",
       "→ **Simulation.** I fly Liftoff three to four hours a week, acro from day one plus freestyle. I matched Liftoff: Micro Drones' rates to my Air75's Betaflight values, which made the jump to real hardware noticeably smoother.",
