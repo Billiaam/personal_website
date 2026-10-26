@@ -27,7 +27,7 @@ export function Rich({ text }: { text: string }) {
 }
 
 /** Image that falls back to a labelled placeholder when the file is missing. */
-export function Img({ src, alt, label, className }: { src: string; alt: string; label?: string; className?: string }) {
+export function Img({ src, alt, label, className, position }: { src: string; alt: string; label?: string; className?: string; position?: string }) {
   const [missing, setMissing] = useState(false)
   if (missing) {
     return (
@@ -36,7 +36,7 @@ export function Img({ src, alt, label, className }: { src: string; alt: string; 
       </div>
     )
   }
-  return <img className={className} src={src} alt={alt} loading="lazy" onError={() => setMissing(true)} />
+  return <img className={className} src={src} alt={alt} loading="lazy" style={position ? { objectPosition: position } : undefined} onError={() => setMissing(true)} />
 }
 
 /** Fade-up on enter. */
@@ -68,7 +68,7 @@ export function ProjectCard({ p, index = 0 }: { p: Project; index?: number }) {
     <Reveal delay={index * 60}>
       <Link className={`card ${upcoming ? 'card--upcoming' : ''}`} to={`/projects/${p.slug}`}>
         <div className="card__img">
-          <Img src={p.cover} alt={p.title} label="Project photograph" />
+          <Img src={p.cover} alt={p.title} label="Project photograph" position={p.coverPosition} />
         </div>
         <div className="card__body">
           <span className="tag">{fieldLabel[p.field]}</span>
@@ -87,7 +87,7 @@ export function SectionCard({ s, count, index = 0 }: { s: Section; count: number
     <Reveal delay={index * 80}>
       <Link className="scard" to={`/${s.field}/${s.slug}`}>
         <div className="scard__img">
-          <Img src={s.cover} alt={s.name} label="Program photograph" />
+          <Img src={s.cover} alt={s.name} label="Program photograph" position={s.coverPosition} />
         </div>
         <div className="scard__body">
           <span className="tag">{fieldLabel[s.field]}</span>
@@ -105,7 +105,7 @@ export function VehicleCard({ s, v, count, index = 0 }: { s: Section; v: Vehicle
     <Reveal delay={index * 80}>
       <Link className={`scard ${v.status === 'Upcoming' ? 'card--upcoming' : ''}`} to={vehicleUrl(s, v)}>
         <div className="scard__img">
-          <Img src={v.cover} alt={v.name} label="Rocket photograph" />
+          <Img src={v.cover} alt={v.name} label="Rocket photograph" position={v.coverPosition} />
         </div>
         <div className="scard__body">
           <span className="tag">{v.kicker}</span>
