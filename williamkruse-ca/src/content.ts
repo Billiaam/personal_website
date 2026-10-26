@@ -539,7 +539,6 @@ export const projects: Project[] = [
     status: 'Flown',
     role: 'Designer',
     cover: '/images/projects/mixing-plate-gen-1.jpg',
-    coverPosition: 'center 22%',
     gallery: ['/images/projects/mixing-plate-gen-1.jpg'],
     body: [
       'The mixing plate was my idea, and my first real design on the team.',

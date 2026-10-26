@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getProject, getSection, getVehicle, inSection, fieldLabel, lineageOf, vehicleUrl } from '../content'
 import { Img, Reveal, ProjectCard, Grid, Rich, Specs } from '../components/ui'
 import NotFound from './NotFound'
+import Lightbox from '../components/Lightbox'
 
 export default function ProjectPage() {
   const { slug } = useParams()
+  const [viewing, setViewing] = useState<number | null>(null)
   const p = slug ? getProject(slug) : undefined
   if (!p) return <NotFound />
   const s = getSection(p.section)
@@ -73,11 +76,17 @@ export default function ProjectPage() {
         {p.gallery && p.gallery.length > 0 && (
           <div className="gallery">
             {p.gallery.map((g, i) => (
-              <a key={g} className="gallery__item" href={g} target="_blank" rel="noreferrer">
+              <button key={g} type="button" className="gallery__item" onClick={() => setViewing(i)} aria-label={`View photo ${i + 1} full screen`}>
                 <Img src={g} alt={`${p.title} — image ${i + 1}`} label={`Photo ${i + 1}`} />
-              </a>
+                <span className="gallery__expand" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </span>
+              </button>
             ))}
           </div>
+        )}
+        {viewing !== null && p.gallery && (
+          <Lightbox images={p.gallery} alt={p.title} start={viewing} onClose={() => setViewing(null)} />
         )}
       </article>
 
