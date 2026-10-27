@@ -571,6 +571,7 @@ export const projects: Project[] = [
     status: 'Flown',
     role: 'Team member',
     cover: '/images/projects/spin-casting-cr25h.jpg',
+    gallery: ['/images/projects/spin-casting-cr25h-1.jpg', '/images/projects/spin-casting-cr25h-2.jpg', '/images/projects/spin-casting-cr25h-3.jpg', '/images/projects/spin-casting-cr25h.jpg'],
     body: [
       'Our first paraffin grains meant building the process from nothing.',
       '→ **The fuel.** A 16" grain of paraffin with A-C6A and Vybar 103 for strength and resistance to slumping, plus carbon black to stop heat radiating deep into the wax and driving runaway regression.',
